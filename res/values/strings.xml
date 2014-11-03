@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ADMD_CW1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_create_pet">CreatePet</string>
+    
+    <string-array name="animal_type">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Rabbit</item>
+        <item>Hamster</item>
+        <item>Bird</item>
+    </string-array>
+    
+    <string-array name="gender">
+        <item>Pick pet gender</item>
+        <item>Male pet</item>
+        <item>Female pet</item>
+    </string-array>
+    
+    <string-array name="services">
+        <item>Type of service to be provided</item>
+        <item>Exercise</item>
+        <item>Feed</item>
+        <item>Let into garden </item>
+    </string-array>
+
+</resources>

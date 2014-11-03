@@ -1,0 +1,121 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+	<LinearLayout 
+	    android:id="@+id/LinearLayout1"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:paddingBottom="@dimen/activity_vertical_margin"
+	    android:paddingLeft="@dimen/activity_horizontal_margin"
+	    android:paddingRight="@dimen/activity_horizontal_margin"
+	    android:paddingTop="@dimen/activity_vertical_margin"
+	    tools:context="com.gre.admd_cw1.CreatePet" >
+	
+	    <EditText
+	        android:id="@+id/petName"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="Pet name" >
+	
+	        <requestFocus />
+	    </EditText>
+	
+	    <Spinner
+	        android:id="@+id/petType"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:entries="@array/animal_type" />
+	    
+	    <Spinner
+	        android:id="@+id/gender"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:entries="@array/gender" />
+	
+	    <EditText
+	        android:id="@+id/ownerName"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="Owner&apos;s name"
+	        android:inputType="textPersonName" />
+	
+	    <EditText
+	        android:id="@+id/address"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="Address"
+	        android:inputType="textPostalAddress" />
+	
+	    <EditText
+	        android:id="@+id/phone"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="Phone number"
+	        android:inputType="phone" />
+	
+	    <EditText
+	        android:id="@+id/services"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="Type of services for pet" />
+
+	    <TextView
+	        android:id="@+id/textView3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+
+	    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Start date" />
+	
+	    <DatePicker
+	        android:id="@+id/startDate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:calendarViewShown="false" />
+
+	    <TextView
+	        android:id="@+id/textView2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="End date" />
+	
+	    <DatePicker
+	        android:id="@+id/endDate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:calendarViewShown="false" />
+	
+	    <EditText
+	        android:id="@+id/comments"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="Additional comments"
+	        android:inputType="textMultiLine" />
+
+	    <EditText
+	        android:id="@+id/whatever"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="wahtever" />
+	
+	    <Button
+	        android:id="@+id/create"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Create"
+	    	android:onClick="displayConfirmDialog" />
+	
+	</LinearLayout>
+</ScrollView>
