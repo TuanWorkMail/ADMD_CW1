@@ -26,31 +26,37 @@ public class CreatePet extends ActionBarActivity {
 		setContentView(R.layout.create_pet);
 	}
 	
-	private void displayConfirmDialog(View v) {
+	public void displayConfirmDialog(View v) {
 		// Get what the user entered
 		String petName = ( (EditText) findViewById(R.id.petName) ).getText().toString();
-		DatePicker dobInput = (DatePicker) findViewById(R.id.petName);
-		EditText emailInput = (EditText) findViewById(R.id.petName);
+		String petType = ( (Spinner) findViewById(R.id.petType) ).getSelectedItem().toString();
+		String gender = ( (Spinner) findViewById(R.id.gender) ).getSelectedItem().toString();
+		String ownerName = ( (EditText) findViewById(R.id.ownerName) ).getText().toString();
+		String address = ( (EditText) findViewById(R.id.address) ).getText().toString();
+		String phone = ( (EditText) findViewById(R.id.phone) ).getText().toString();
+		String services = ( (EditText) findViewById(R.id.services) ).getText().toString();
+		String startDate = getDateFromDatePicker( (DatePicker) findViewById(R.id.startDate) );
+		String endDate = getDateFromDatePicker( (DatePicker) findViewById(R.id.endDate) );
+		String comments = ( (EditText) findViewById(R.id.comments) ).getText().toString();
+		String whatever = ( (EditText) findViewById(R.id.whatever) ).getText().toString();
 
-		// final so we can reference them in the anonymous inner class below
-
-		final String strName = emailInput.getText().toString();
-		final String strDOB = dobInput.getDayOfMonth() + "/"
-				+ (dobInput.getMonth() + 1) + "/" + dobInput.getYear();
-		final String strEmail = emailInput.getText().toString();
-
+		// source : android persist sample in lecture
 		// Create and display the Alert dialog
 		new AlertDialog.Builder(this)
-				.setTitle("   Details entered")
-				.setMessage(
-						" Details entered:\n " + strName + "\n " + strDOB
-								+ "\n " + strEmail)
+				.setTitle("Confirm details")
+				.setMessage(	"Pet name: " + petName + "\n" +
+								"Pet type: " + petType + "\n" +
+								"gender: " + gender + "\n" +
+								"Owner's name: " + ownerName + "\n" +
+								"address: " + address + "\n" +
+								"phone: " + phone + "\n" +
+								"services: " + services + "\n" +
+								"startDate: " + startDate + "\n" +
+								"endDate: " + endDate + "\n" +
+								"gender: " + comments + "\n" +
+								"gender: " + whatever + "\n" )
 				.setNeutralButton("Back",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,	int which) {
-								// do nothing - it will just close when clicked
-							}
-						})
+						new DialogInterface.OnClickListener() {public void onClick(DialogInterface dialog,	int which) {}})
 				.setPositiveButton("Save",
 						new DialogInterface.OnClickListener() {
 
@@ -62,55 +68,9 @@ public class CreatePet extends ActionBarActivity {
 						}).show();
 	}
 	
-//	// copy from [http://developer.android.com/guide/topics/ui/controls/pickers.html]
-//	public static class DatePickerFragment extends DialogFragment
-//	implements DatePickerDialog.OnDateSetListener {
-//
-//		protected String whichDate;
-//		
-//		public DatePickerFragment(String _whichDate) {
-//			whichDate = _whichDate;
-//		}
-//		
-//		@Override
-//		public Dialog onCreateDialog(Bundle savedInstanceState) {
-//			// Use the current date as the default date in the picker
-//			final Calendar c = Calendar.getInstance();
-//			int year = c.get(Calendar.YEAR);
-//			int month = c.get(Calendar.MONTH);
-//			int day = c.get(Calendar.DAY_OF_MONTH);
-//
-//			// Create a new instance of DatePickerDialog and return it
-//			return new DatePickerDialog(getActivity(), this, year, month, day);
-//		}
-//
-//		public void onDateSet(DatePicker view, int year, int month, int day) {
-//			// Do something with the date chosen by the user
-//			switch (whichDate) {
-//			case "start":
-//				
-//				break;
-//			case "end":
-//				
-//				break;
-//
-//			default:
-//				break;
-//			}
-//		}
-//	}	
-//	public void showDatePickerDialog(View v, String whichDate) {
-//	    DialogFragment newFragment = new DatePickerFragment(whichDate);
-//	    newFragment.show(getSupportFragmentManager(), "datePicker");
-//	}
-//	
-//	// handle start/end date button onClick event
-//	public void getStartDate(View v){
-//		showDatePickerDialog(v, "start");
-//	}
-//	public void getEndDate(View v){
-//		showDatePickerDialog(v, "end");
-//	}
+	protected String getDateFromDatePicker(DatePicker datePicker) {
+		return datePicker.getYear() + "/" + (datePicker.getMonth()+1) + "/" + datePicker.getDayOfMonth() + "/";
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
