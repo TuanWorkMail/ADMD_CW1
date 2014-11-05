@@ -104,11 +104,18 @@
 	        android:inputType="textMultiLine" />
 
 	    <EditText
-	        android:id="@+id/whatever"
+	        android:id="@+id/email"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:ems="10"
-	        android:hint="wahtever" />
+	        android:hint="Email" />
+
+	    <EditText
+	        android:id="@+id/emergency"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="Emergency contact details" />
 	
 	    <Button
 	        android:id="@+id/create"

@@ -1,22 +1,18 @@
 package com.gre.admd_cw1;
 
-import java.security.PublicKey;
-import java.util.Calendar;
-
 import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.DialogFragment;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class CreatePet extends ActionBarActivity {
 
@@ -26,21 +22,43 @@ public class CreatePet extends ActionBarActivity {
 		setContentView(R.layout.create_pet);
 	}
 	
+	String petName;
+	String petType;
+	String gender;
+	String ownerName;
+	String address;
+	String phone;
+	String services;
+	String startDate;
+	String endDate;
+	String comments;
+	String email;
+	String emergency;
+	
 	public void displayConfirmDialog(View v) {
+		
+		int checkEmpty = 	checkEmpty(R.id.petName) + 
+							checkEmpty(R.id.ownerName) + 
+							checkEmpty(R.id.address) + 
+							checkEmpty(R.id.phone);
+		if(checkEmpty>0) return;
+		
 		// Get what the user entered
-		String petName = ( (EditText) findViewById(R.id.petName) ).getText().toString();
-		String petType = ( (Spinner) findViewById(R.id.petType) ).getSelectedItem().toString();
-		String gender = ( (Spinner) findViewById(R.id.gender) ).getSelectedItem().toString();
-		String ownerName = ( (EditText) findViewById(R.id.ownerName) ).getText().toString();
-		String address = ( (EditText) findViewById(R.id.address) ).getText().toString();
-		String phone = ( (EditText) findViewById(R.id.phone) ).getText().toString();
-		String services = ( (EditText) findViewById(R.id.services) ).getText().toString();
-		String startDate = getDateFromDatePicker( (DatePicker) findViewById(R.id.startDate) );
-		String endDate = getDateFromDatePicker( (DatePicker) findViewById(R.id.endDate) );
-		String comments = ( (EditText) findViewById(R.id.comments) ).getText().toString();
-		String whatever = ( (EditText) findViewById(R.id.whatever) ).getText().toString();
-
+		petName = ( (EditText) findViewById(R.id.petName) ).getText().toString();
+		petType = ( (Spinner) findViewById(R.id.petType) ).getSelectedItem().toString();
+		gender = ( (Spinner) findViewById(R.id.gender) ).getSelectedItem().toString();
+		ownerName = ( (EditText) findViewById(R.id.ownerName) ).getText().toString();
+		address = ( (EditText) findViewById(R.id.address) ).getText().toString();
+		phone = ( (EditText) findViewById(R.id.phone) ).getText().toString();
+		services = ( (EditText) findViewById(R.id.services) ).getText().toString();
+		startDate = getDateFromDatePicker( (DatePicker) findViewById(R.id.startDate) );
+		endDate = getDateFromDatePicker( (DatePicker) findViewById(R.id.endDate) );
+		comments = ( (EditText) findViewById(R.id.comments) ).getText().toString();
+		email = ( (EditText) findViewById(R.id.email) ).getText().toString();
+		emergency = ( (EditText) findViewById(R.id.emergency) ).getText().toString();
+	
 		// source : android persist sample in lecture
+		
 		// Create and display the Alert dialog
 		new AlertDialog.Builder(this)
 				.setTitle("Confirm details")
@@ -53,23 +71,52 @@ public class CreatePet extends ActionBarActivity {
 								"services: " + services + "\n" +
 								"startDate: " + startDate + "\n" +
 								"endDate: " + endDate + "\n" +
-								"gender: " + comments + "\n" +
-								"gender: " + whatever + "\n" )
-				.setNeutralButton("Back",
+								"comments: " + comments + "\n" +
+								"email: " + email + "\n" +
+								"emergency: " + emergency)
+				.setNeutralButton("Change",
 						new DialogInterface.OnClickListener() {public void onClick(DialogInterface dialog,	int which) {}})
-				.setPositiveButton("Save",
+				.setPositiveButton("Create",
 						new DialogInterface.OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog,	int which) {
-								// save the details entered if "Save" button clicked
-								//saveDetails(strName, strDOB, strEmail);
+
+								insertDB();
 							}
 						}).show();
 	}
 	
+	protected DatabaseHelper databaseHelper;
+
+	protected void insertDB() {
+		try {
+			
+		databaseHelper.insertDetails(petName, petType, gender, ownerName, address, phone, services, 
+								startDate, endDate, comments, email, emergency);
+		
+		Toast.makeText(getApplicationContext(), "Pet created successfully", Toast.LENGTH_LONG).show();
+		}
+		catch (SQLiteException exception) {
+			Log.e("SQLiteException:", exception.toString());
+			Toast.makeText(getApplicationContext(), "SQLiteException:insert failed", Toast.LENGTH_LONG).show();
+		}
+
+	}
+	
+	protected int checkEmpty(int id) {
+		EditText editText = (EditText) findViewById(id);
+		String string = editText.getText().toString();
+		
+		if (string != null && string.length() > 0) {
+			return 0;
+		}
+		editText.setError("Must not be blank!");
+		return 1;
+	}
+	
 	protected String getDateFromDatePicker(DatePicker datePicker) {
-		return datePicker.getYear() + "/" + (datePicker.getMonth()+1) + "/" + datePicker.getDayOfMonth() + "/";
+		return datePicker.getYear() + "/" + (datePicker.getMonth()+1) + "/" + datePicker.getDayOfMonth();
 	}
 	
 	@Override
