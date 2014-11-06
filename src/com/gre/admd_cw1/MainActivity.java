@@ -19,6 +19,10 @@ public class MainActivity extends ActionBarActivity {
 		startActivity(new Intent(this, CreatePet.class));
 	}
 
+	public void searchPet(View v) {
+		startActivity(new Intent(this, ShowAllPets.class));
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

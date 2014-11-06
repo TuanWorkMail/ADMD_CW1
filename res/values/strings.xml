@@ -5,7 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_create_pet">CreatePet</string>
-    
+    <string name="title_activity_show_all_pets">ShowAllPets</string>
+
     <string-array name="animal_type">
         <item>Dog</item>
         <item>Cat</item>
@@ -13,16 +14,21 @@
         <item>Hamster</item>
         <item>Bird</item>
     </string-array>
-    
     <string-array name="gender">
         <item>Male pet</item>
         <item>Female pet</item>
     </string-array>
-    
     <string-array name="services">
         <item>Exercise</item>
         <item>Feed</item>
         <item>Let into garden </item>
     </string-array>
+    <string-array name="choose_mode">
+        <item>View pet details</item>
+        <item>Create Report</item>
+        <item>View report</item>
+    </string-array>
+
+    <string name="title_activity_list_all_pet">ListAllPet</string>
 
 </resources>

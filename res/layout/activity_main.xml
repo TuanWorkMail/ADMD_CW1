@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search pet"
-    	android:onClick="displayCreatePet" />
+    	android:onClick="searchPet" />
 
     <Button
         android:id="@+id/report"
