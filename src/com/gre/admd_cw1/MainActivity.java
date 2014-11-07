@@ -20,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void searchPet(View v) {
-		startActivity(new Intent(this, ShowAllPets.class));
+		startActivity(new Intent(this, ListAllPet.class));
 	}
 
 	@Override

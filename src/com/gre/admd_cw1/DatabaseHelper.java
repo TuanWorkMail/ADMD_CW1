@@ -40,10 +40,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		db.execSQL("CREATE TABLE skills (_id INTEGER PRIMARY KEY AUTOINCREMENT, person_id INTEGER, skill TEXT);");
 
-		db.execSQL("INSERT INTO pets VALUES ('Lucky','Cat','Male pet','John Smith','11222333444','1 Manhattan Ave'," +
-				"'Feed','2014/11/06','2014/11/07','aware biting','john@gmail.com','reach me on facebook johnsm12');");
-		db.execSQL("INSERT INTO pets VALUES ('Fluffy','Dog','Female pet','Troy Allens','99888777666','1 5th Ave'," +
-				"'Exercise','2014/11/05','2014/11/08','also feed','troy@yahoo.com','always available on phone');");
+		db.execSQL("INSERT INTO pets (petName,petType,gender,ownerName,phone,address,services,startDate,endDate,comments,email,emergency)" +
+				"VALUES ('Lucky','Cat','Male pet','John Smith','11222333444','1 Manhattan Ave','Feed','2014/11/06','2014/11/07','aware biting','john@gmail.com','phone');");
+		db.execSQL("INSERT INTO pets (petName,petType,gender,ownerName,phone,address,services,startDate,endDate,comments,email,emergency)" +
+				"VALUES ('Fluffy','Dog','Female pet','Troy Allens','99888777666','1 5th Ave','Exercise','2014/11/05','2014/11/08','also feed','troy@yahoo.com','email');");
 	}
 
 	@Override
@@ -85,24 +85,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return database.query("pets", null, null, null, null, null, null);
 	}
 
-//	// get all the rows of the details table ordered by the name column
-//	public Cursor getFilteredRecords(String filter) {
-//		// return database.query(TABLE_NAME, null, null, null, null, null,
-//		// NAME_COL);
-//
-//		// Alternative to demonstrate rawQuery()
-//		// return database.rawQuery("SELECT * FROM details ORDER BY name",
-//		// null);
-//
-//		// Alternative demonstrating some of the other parameters
-//		return database.query(TABLE_NAME, new String[] { "_id", NAME_COL,
-//				DATE_OF_BIRTH_COL, EMAIL_COL }, "name like ?",
-//				new String[] { filter + "%" }, null, null, NAME_COL);
-//
-//	}
-//
-//	// delete all the rows of the details table
-//	public void deleteAllRecords() {
-//		database.delete(TABLE_NAME, null, null);
-//	}
+	public Cursor searchPet(String searchKeyword) {
+		
+		return database.query("pets", null, "petName like ?",
+				new String[] { searchKeyword + "%" }, null, null, "petName");
+
+	}
+
+	// delete all the rows of the details table
+	public void deleteAllRecords() {
+		database.delete("skills", null, null);
+		database.delete("pets", null, null);
+	}
 }
