@@ -5,9 +5,15 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.FilterQueryProvider;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ListAllPet extends ListActivity {
 
@@ -65,5 +71,19 @@ public class ListAllPet extends ListActivity {
 				simpleCursorAdapter.notifyDataSetChanged();
 			}
 		});
+		
+		ListView list = (ListView) findViewById(android.R.id.list);
+		
+		list.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                    long id) {
+                
+                //String item = ((TextView)view).getText().toString();
+                
+                Toast.makeText(getBaseContext(), "position: "+position+",id: "+id, Toast.LENGTH_SHORT).show();
+                
+            }
+        });
 	}
 }
