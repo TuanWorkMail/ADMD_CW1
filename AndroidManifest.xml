@@ -27,12 +27,12 @@
             android:label="@string/title_activity_create_pet" >
         </activity>
         <activity
-            android:name=".ShowAllPets"
-            android:label="@string/title_activity_show_all_pets" >
-        </activity>
-        <activity
             android:name=".ListAllPet"
             android:label="@string/title_activity_list_all_pet" >
+        </activity>
+        <activity
+            android:name=".CreateAndShowReport"
+            android:label="@string/title_activity_create_and_show_report" >
         </activity>
     </application>
 

@@ -5,7 +5,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_create_pet">CreatePet</string>
-    <string name="title_activity_show_all_pets">ShowAllPets</string>
 
     <string-array name="animal_type">
         <item>Dog</item>
@@ -30,5 +29,6 @@
     </string-array>
 
     <string name="title_activity_list_all_pet">ListAllPet</string>
+    <string name="title_activity_create_and_show_report">CreateAndShowReport</string>
 
 </resources>

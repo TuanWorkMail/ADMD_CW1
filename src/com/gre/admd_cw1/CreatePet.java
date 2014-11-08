@@ -15,11 +15,16 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class CreatePet extends ActionBarActivity {
+	
+	protected DatabaseHelper databaseHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.create_pet);
+
+		// avoid nullpointerexception
+		databaseHelper = new DatabaseHelper(this);
 	}
 	
 	String petName;
@@ -86,21 +91,14 @@ public class CreatePet extends ActionBarActivity {
 							}
 						}).show();
 	}
-	
-	protected DatabaseHelper databaseHelper;
 
 	protected void insertDB() {
-		try {
 			
 		databaseHelper.insertDetails(petName, petType, gender, ownerName, address, phone, services, 
 								startDate, endDate, comments, email, emergency);
 		
 		Toast.makeText(getApplicationContext(), "Pet created successfully", Toast.LENGTH_LONG).show();
-		}
-		catch (SQLiteException exception) {
-			Log.e("SQLiteException:", exception.toString());
-			Toast.makeText(getApplicationContext(), "SQLiteException:insert failed", Toast.LENGTH_LONG).show();
-		}
+		
 
 	}
 	
