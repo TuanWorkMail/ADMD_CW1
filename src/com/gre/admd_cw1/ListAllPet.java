@@ -1,6 +1,7 @@
 package com.gre.admd_cw1;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,12 +13,15 @@ import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ListAllPet extends ListActivity {
 
+    public final static String PET_ID = "aloha ha ha ha";
+
 	private DatabaseHelper dbHelper;
+	
+	ListAllPet that = this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,13 +80,13 @@ public class ListAllPet extends ListActivity {
 		
 		list.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                    long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 
-                //String item = ((TextView)view).getText().toString();
+//                Toast.makeText(getBaseContext(), "position: "+position+",id: "+id, Toast.LENGTH_SHORT).show();
                 
-                Toast.makeText(getBaseContext(), "position: "+position+",id: "+id, Toast.LENGTH_SHORT).show();
-                
+                Intent intent = new Intent(that, CreateAndShowReport.class);
+                intent.putExtra(PET_ID, id);
+                startActivity(intent);
             }
         });
 	}

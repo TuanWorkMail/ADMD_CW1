@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 																					"emergency TEXT);");
 		
 		db.execSQL("CREATE TABLE reports (_id INTEGER PRIMARY KEY AUTOINCREMENT,petId INTEGER," +
-				"date TEXT,time TEXT,notes TEXT,sitterName,FOREIGN KEY(petId) REFERENCES pets(_id));");
+				"date TEXT,time TEXT,notes TEXT,sitterName TEXT,FOREIGN KEY(petId) REFERENCES pets(_id));");
 
 		// INSERT SOME DATA //
 		
@@ -51,17 +51,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO pets (petName,petType,gender,ownerName,phone,address,services,startDate,endDate,comments,email,emergency)" +
 				"VALUES ('Fluffy','Dog','Female pet','Troy Allens','99888777666','1 5th Ave','Exercise','2014/11/05','2014/11/08','also feed','troy@yahoo.com','email');");
 		
-		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES(1,'2014/11/06','16:00','he litter','Maggie');");
-		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES(1,'2014/11/07','14:00','knock down lamp','Bob');");
-		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES(2,'2014/11/05','10:00','jump alot','Rachel');");
-		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES(2,'2014/11/08','08:00','nice cat','Marge');");
+		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('1','2014/11/06','16:00','he litter','Maggie');");
+		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('1','2014/11/07','14:00','knock down lamp','Bob');");
+		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('2','2014/11/05','10:00','jump alot','Rachel');");
+		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('2','2014/11/08','08:00','nice cat','Marge');");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.v("database version changed","database version changed to "+newVersion+",drop all old tables then recreate");
 		db.execSQL("DROP TABLE IF EXISTS pets");
-		db.execSQL("DROP TABLE IF EXISTS skills");
+		db.execSQL("DROP TABLE IF EXISTS reports");
 		onCreate(db);
 	}
 
@@ -104,6 +104,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return database.query("pets", null, "petName like ?",
 				new String[] { searchKeyword + "%" }, null, null, "petName");
 
+	}
+
+	public Cursor getPetName(long id) {
+		
+		return database.query("pets",new String[]{"petName"},"_id = ?",new String[] { String.valueOf(id) }, null, null, null);
+	}
+
+	public Cursor getPetReports(long id) {
+
+		return database.query("reports", null,"petId = ?",new String[] { String.valueOf(id) }, null, null, "date");   
 	}
 
 	// delete all the rows of the details table
