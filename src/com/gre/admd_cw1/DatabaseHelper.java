@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
@@ -87,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			rowValues.put("email", email);
 			rowValues.put("emergency", emergency);
 	
-			long petId = database.insertOrThrow("pets", null, rowValues);
+			database.insertOrThrow("pets", null, rowValues);
 		
 		}
 		catch (SQLiteException exception) {
@@ -114,6 +113,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public Cursor getPetReports(long id) {
 
 		return database.query("reports", null,"petId = ?",new String[] { String.valueOf(id) }, null, null, "date");   
+	}
+	
+
+	public void insertReport(String petId, String date, String time, String notes, String sitterName) {
+		
+		try {
+		
+			ContentValues rowValues = new ContentValues();
+	
+			// Assemble row of data in the ContentValues object
+			rowValues.put("petId", petId);
+			rowValues.put("date", date);
+			rowValues.put("time", time);
+			rowValues.put("notes", notes);
+			rowValues.put("sitterName", sitterName);
+	
+			database.insertOrThrow("reports", null, rowValues);
+		
+		}
+		catch (SQLiteException exception) {
+			Log.e("SQLiteException:", exception.toString());
+		}
 	}
 
 	// delete all the rows of the details table

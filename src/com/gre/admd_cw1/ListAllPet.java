@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 public class ListAllPet extends ListActivity {
 

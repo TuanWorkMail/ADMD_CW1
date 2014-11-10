@@ -30,13 +30,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Report pet sitting"
-    	android:onClick="displayCreatePet" />
+    	android:onClick="searchPet" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete all reports and pets in database"
+        android:textColor="#FF0000" />
 
     <Button
         android:id="@+id/deleteAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete all pets"
-    	android:onClick="displayCreatePet" />
+    	android:onClick="deleteAll" />
 
 </LinearLayout>

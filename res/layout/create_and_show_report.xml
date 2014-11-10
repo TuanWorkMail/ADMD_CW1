@@ -26,22 +26,22 @@
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="350dp" >
+            android:layout_height="180dp" >
         </ListView>
 
         <DatePicker
-            android:id="@+id/datePicker1"
+            android:id="@+id/datePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:calendarViewShown="false" />
 
         <TimePicker
-            android:id="@+id/timePicker1"
+            android:id="@+id/timePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editTextNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -50,7 +50,7 @@
         </EditText>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

@@ -1,18 +1,23 @@
 package com.gre.admd_cw1;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
+	DatabaseHelper databaseHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		databaseHelper = new DatabaseHelper(this);
 	}
 
 	public void displayCreatePet(View v) {
@@ -22,23 +27,29 @@ public class MainActivity extends ActionBarActivity {
 	public void searchPet(View v) {
 		startActivity(new Intent(this, ListAllPet.class));
 	}
+	
+	public void deleteAll(View v) {
+		
+		new AlertDialog.Builder(this)
+		.setTitle("Confirm delete")
+		.setMessage("Are you sure? This will delete everything")
+		.setNeutralButton("No",
+				new DialogInterface.OnClickListener() {public void onClick(DialogInterface dialog,	int which) {}})
+				.setPositiveButton("Delete",
+						new DialogInterface.OnClickListener() {
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+					@Override
+					public void onClick(DialogInterface dialog,	int which) {
+
+						deleteAllDatabase();
+					}
+				}).show();
 	}
+	
+	protected void deleteAllDatabase() {
+		
+		databaseHelper.deleteAllRecords();
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		Toast.makeText(getApplicationContext(), "Delete all reports and pets successful", Toast.LENGTH_LONG).show();
 	}
 }
