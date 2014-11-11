@@ -17,16 +17,6 @@
         <item>Male pet</item>
         <item>Female pet</item>
     </string-array>
-    <string-array name="services">
-        <item>Exercise</item>
-        <item>Feed</item>
-        <item>Let into garden </item>
-    </string-array>
-    <string-array name="choose_mode">
-        <item>View pet details</item>
-        <item>Create Report</item>
-        <item>View report</item>
-    </string-array>
 
     <string name="title_activity_list_all_pet">ListAllPet</string>
     <string name="title_activity_create_and_show_report">CreateAndShowReport</string>

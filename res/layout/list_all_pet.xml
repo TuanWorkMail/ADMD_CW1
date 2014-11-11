@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Click on pet to view and create reports"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
         android:id="@+id/searchPet"
@@ -19,8 +19,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Search pet name" >
-
-        <requestFocus />
     </EditText>
 
     <RelativeLayout
@@ -142,11 +140,6 @@
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
         
     </RelativeLayout>
-    
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <ListView
         android:id="@android:id/list"

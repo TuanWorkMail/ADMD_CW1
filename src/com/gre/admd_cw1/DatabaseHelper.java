@@ -1,7 +1,5 @@
 package com.gre.admd_cw1;
 
-// source : android persist sample in lecture
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,11 +10,10 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
-	private static final String DATABASE_NAME = "ADMD_CW1";
 	private SQLiteDatabase database;
 
 	public DatabaseHelper(Context context) {
-		super(context, DATABASE_NAME, null, 1); // 1 is database version number
+		super(context, "ADMD_CW1", null, 1); // 1 is database version number
 
 		database = getWritableDatabase();
 	}
@@ -46,14 +43,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// INSERT SOME DATA //
 		
 		db.execSQL("INSERT INTO pets (petName,petType,gender,ownerName,phone,address,services,startDate,endDate,comments,email,emergency)" +
-				"VALUES ('Lucky','Cat','Male pet','John Smith','11222333444','1 Manhattan Ave','Feed','2014/11/06','2014/11/07','aware biting','john@gmail.com','phone');");
+				"VALUES ('Lucky','Cat','Male pet','John Smith','11222333444','1 Manhattan Ave','Feed','2014/11/05','2014/11/08','aware biting','john@gmail.com','phone');");
 		db.execSQL("INSERT INTO pets (petName,petType,gender,ownerName,phone,address,services,startDate,endDate,comments,email,emergency)" +
-				"VALUES ('Fluffy','Dog','Female pet','Troy Allens','99888777666','1 5th Ave','Exercise','2014/11/05','2014/11/08','also feed','troy@yahoo.com','email');");
+				"VALUES ('Fluffy','Dog','Female pet','Troy Allens','99888777666','1 5th Ave','Exercise','2014/11/06','2014/11/07','also feed','troy@yahoo.com','email');");
 		
 		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('1','2014/11/06','16:00','he litter','Maggie');");
 		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('1','2014/11/07','14:00','knock down lamp','Bob');");
-		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('2','2014/11/05','10:00','jump alot','Rachel');");
-		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('2','2014/11/08','08:00','nice cat','Marge');");
+		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('1','2014/11/05','10:00','jump alot','Rachel');");
+		db.execSQL("INSERT INTO reports (petId,date,time,notes,sitterName)VALUES('1','2014/11/08','08:00','nice cat','Marge');");
 	}
 
 	@Override

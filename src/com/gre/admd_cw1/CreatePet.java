@@ -3,6 +3,7 @@ package com.gre.admd_cw1;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -95,7 +96,8 @@ public class CreatePet extends Activity {
 		
 		Toast.makeText(getApplicationContext(), "Pet created successfully", Toast.LENGTH_LONG).show();
 		
-
+		// auto redirect to list all pet to see the new pet
+		startActivity(new Intent(this, ListAllPet.class));
 	}
 	
 	protected int checkEmpty(int id) {
